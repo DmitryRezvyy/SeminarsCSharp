@@ -1,9 +1,9 @@
 ﻿//Задача №19 Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.
-/*
+
 Console.WriteLine("Введите пятизначное число");
 int a = Convert.ToInt32(Console.ReadLine());
 
-void IsPalindrom(int value)
+bool IsPalindrom(int value)
 {
     string[] array = new string[value.ToString().Length];
     for (int i = 0; i < a.ToString().Length; i++)
@@ -11,12 +11,14 @@ void IsPalindrom(int value)
         array[i] = value.ToString().Substring(i, 1);
     }
     if (array[0] == array[4] && array[1] == array[3])
-        Console.WriteLine($"{value} -> Да");
-    else Console.Write($"{value} -> Нет");
+        return true;
+    else return false;
 }
 
-IsPalindrom(a);
-*/
+if (IsPalindrom(a))
+    Console.WriteLine($"{a} -> Да");
+else Console.WriteLine($"{a} -> Нет");
+
 
 // Задача №21 Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
 /*
@@ -49,7 +51,7 @@ Console.WriteLine($"A({aX}, {aY}, {aZ}); B({bX}, {bY}, {bZ}) -> {Math.Round(Dist
 */
 
 //Задача №23 Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
-
+/*
 Console.WriteLine("Введите число");
 int a = Convert.ToInt32(Console.ReadLine());
 Console.Write($"{a} -> ");
@@ -59,3 +61,4 @@ for (int i = 1; i <= a; i++)
         Console.Write($", {Math.Pow(i, 3)}");
     else Console.Write($"{1}");
 }
+*/
