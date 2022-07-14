@@ -81,3 +81,38 @@ ShowArray(myArray);
 Console.WriteLine($" -> {SumEvenPositionItem(myArray)}");
 */
 
+//Задача №38 Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
+
+double[] CreateArray(int size)
+{
+    double[] array = new double[size];
+    for (int i = 0; i < array.Length; i++)
+    {
+        array[i] = Math.Round(new Random().NextDouble() * (new Random().Next(101)), 2);
+    }
+    return array;
+}
+
+void ShowArray(double[] array)
+{
+    Console.Write("[");
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (i != array.Length - 1)
+            Console.Write(array[i] + ", ");
+        else Console.Write(array[i]);
+    }
+    Console.Write("]");
+}
+
+double MaxMinItemDelta(double[] array)
+{
+    double diff = 0;
+    diff = array.Max() - array.Min();
+    return diff;
+}
+Console.WriteLine("Введите размер массива");
+int a = Convert.ToInt32(Console.ReadLine());
+double[] myArray = CreateArray(a);
+ShowArray(myArray);
+Console.WriteLine($" -> {MaxMinItemDelta(myArray)}");
