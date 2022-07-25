@@ -107,7 +107,7 @@ Console.WriteLine($"Строка с минимальной суммой элем
 */
 
 //Задача №58 Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
-
+/*
 Console.WriteLine("Укажите число строк матрицы А: ");
 int rowsA = Convert.ToInt16(Console.ReadLine());
 Console.WriteLine("Укажите число столбцов матрицы А (строк матрицы B): ");
@@ -159,9 +159,71 @@ int[,] myArrayA = Create2DimArray(rowsA, columnsA);
 int[,] myArrayB = Create2DimArray(rowsB, columnsB);
 int[,] myArrayC = new int[rowsA, columnsB];
 myArrayC = MatrixMultiplication(myArrayA, myArrayB);
-Console.WriteLine("Матрица А:");
+Console.WriteLine("\nМатрица А:");
 PrintArray(myArrayA);
-Console.WriteLine("Матрица B:");
+Console.WriteLine("\nМатрица B:");
 PrintArray(myArrayB);
-Console.WriteLine("Произведение матриц:");
+Console.WriteLine("\nПроизведение матриц:");
 PrintArray(myArrayC);
+*/
+
+//Задача №60 Сформируйте трёхмерный массив из неповторяющихся двузначных чисел.
+//Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента. массив размером 2 x 2 x 2
+
+Console.WriteLine("Укажите размер массива (не менее 2 и не более 4): ");
+int size = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine($"Укажите минимальное значение диапазона (не менее 10 и не более {99 - Math.Pow(size, 3)}): ");
+int min = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine($"Укажите максимальное значение диапазона (не менее {min + Math.Pow(size, 3) - 1} и не более 99): ");
+int max = Convert.ToInt32(Console.ReadLine());
+int[,,] Create3DimArray(int size1, int size2, int size3, int[] value)
+{
+    int[,,] newArray = new int[size1, size2, size3];
+    int f = 0;
+    for (int i = 0; i < size1; i++)
+    {
+        for (int j = 0; j < size2; j++)
+        {
+            for (int k = 0; k < size3; k++)
+            {
+                newArray[i, j, k] = value[f];
+                f++;
+            }
+        }
+    }
+    return newArray;
+}
+int[] Unique2DigitIntValue(int min, int max)
+{
+    int[] array = new int[max - min + 1];
+    int value = 0;
+    for (int i = 0; i < array.Length; i++)
+    {
+        value = new Random().Next(min, max + 1);
+        if (array.Contains(value))
+            i--;
+        else
+            array[i] = value;
+    }
+    return array;
+}
+void PrintArray(int[,,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            for (int k = 0; k < array.GetLength(2); k++)
+            {
+                Console.Write($"{array[i, j, k]} ({i}, {j}, {k}) \t");
+            }
+            Console.WriteLine();
+        }
+        Console.WriteLine();
+    }
+    Console.WriteLine();
+}
+Console.WriteLine();
+int[,,] myArray = Create3DimArray(size, size, size, Unique2DigitIntValue(min, max));
+
+PrintArray(myArray);
