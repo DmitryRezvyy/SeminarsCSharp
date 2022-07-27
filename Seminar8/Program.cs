@@ -169,7 +169,7 @@ PrintArray(myArrayC);
 
 //Задача №60 Сформируйте трёхмерный массив из неповторяющихся двузначных чисел.
 //Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента. массив размером 2 x 2 x 2
-
+/*
 Console.WriteLine("Укажите размер массива (не менее 2 и не более 4): ");
 int size = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine($"Укажите минимальное значение диапазона (не менее 10 и не более {99 - Math.Pow(size, 3)}): ");
@@ -227,3 +227,77 @@ Console.WriteLine();
 int[,,] myArray = Create3DimArray(size, size, size, Unique2DigitIntValue(min, max));
 
 PrintArray(myArray);
+*/
+
+//Задача №62 Заполните спирально массив 4 на 4.
+
+Console.WriteLine("Введите начальное значение: ");
+int startValue = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите размер массива: ");
+int arraySize = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine();
+int[,] Create2DimArray(int value, int size)
+{
+    int[,] newArray = new int[size, size];
+    int i = 0;
+    int j = 0;
+    void RoundRunner(int count, int k, int l)
+    {
+        for (int m = 0; m < count; m++)
+        {
+            newArray[k, l] = value;
+            value++;
+            l++;
+        }
+        l--;
+        k++;
+        if (count > 1)
+        {
+            for (int m = 0; m < count - 1; m++)
+            {
+                newArray[k, l] = value;
+                value++;
+                k++;
+            }
+            k--;
+            l--;
+            for (int m = 0; m < count - 1; m++)
+            {
+                newArray[k, l] = value;
+                value++;
+                l--;
+            }
+            l++;
+            k--;
+            for (int m = 0; m < count - 2; m++)
+            {
+                newArray[k, l] = value;
+                value++;
+                k--;
+            }
+        }
+    }
+    while (size > 0)
+    {
+        RoundRunner(size, i, j);
+        size = size - 2;
+        i++;
+        j++;
+    }
+    return newArray;
+}
+
+
+void PrintArray(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            Console.Write(array[i, j] + "\t");
+        }
+        Console.WriteLine();
+    }
+    Console.WriteLine();
+}
+PrintArray(Create2DimArray(startValue, arraySize));
